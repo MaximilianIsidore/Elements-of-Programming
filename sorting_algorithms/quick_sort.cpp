@@ -11,13 +11,13 @@ template <typename Type>
 int partition(vector<Type>& arr,int low, int high, bool (*cmp)(Type, Type)){
 
     Type pivot = arr[low];
-    int i = low+1;
+    int i = low;
     int j = high;
 
     while(i<j){
 
         while(i<high && cmp(arr[i], pivot)) i++;
-        while(j>low && !cmp(arr[j], pivot)) j--;
+        while(j>low && cmp(pivot, arr[j])) j--;
 
         if(i<j) swap(arr[i], arr[j]);
     }
@@ -57,7 +57,7 @@ bool string_cmp(string a, string b){
         char ca = tolower(a[i]);
         char cb = tolower(b[j]);
 
-        if (ca <= cb) return true;
+        if (ca < cb) return true;
         if (ca > cb) return false;
 
         i++;
